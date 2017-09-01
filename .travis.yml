@@ -7,14 +7,8 @@ matrix:
   - php: 7.1
   - php: hhvm
   fast_finish: true
-#before_script: 
-#script:
-#- ssh l3p@medialab.ufg.br git pull /home/l3p/tainacan_docs/test/tainacan/
 cache:
-  directories:
-#  - "$COMPOSER_CACHE_DIR"
-#  - "$HOME/.composer/cache"
-#  - vendor
+  directories: 
 notifications:
   on_success: never
   on_failure: always
@@ -28,27 +22,15 @@ env:
   - secure: VMRxLl42yXCGRsmogIoYb31jzE9dyCpmlyB2fM+VsNNp/WWp1IB5QhhmH5klxw7KG16+Mhz7E9k99v+CmOyMVWmse3l9JXUoImdUNue5csgiMziHXU6A0zXv3EZVI0MfWilBoFOlc91c0n9h1jlUJ9VSBIaac+VqM8Icpw/w2ASha4XujJ02ahnYItmz9WVG2rG7mKYpc9DDHi2zbR+LyNLuX4tvi1CQtkpRiIFbs5eX+vIwQ2bFG1vpbbsiFkFPVGRlfh4DQaNo0Bam08BfsmK4TkYRiGxXZYTBM1QWJKdnzTZOnZ8uaiKCAGxC+5VsWuuqFfn9qPfx/7S43NGwG9aJSglkRZ9S4eKodMjCg+oGosq2dkGasll7owrk1vY1/rBjJodg+Y0q5uOXYfjT/Jmq0c/u0uQewUSdG6mSMEpmbSg43cAeA/9xruM0sVelBzH5zgvzQjUF6yTsN0E3XVwxmS6l1YesnfYXmGnJ1w5vQJMbLaN1FyPoRw0AsaGGqQooL4FEwb+vu299J9x61U4GxKJrJd16mRWItu0Rj4oZ79zdElTRcjvGQz4j1qelDDfxufst9hIqkSjIEzsBPZMIp/49FJfKwgsuB2fl8L3q4XnqPG4AXRRsb25JEMPQYEpvk31kVmtCGadhAKgLrjZ2Kd6amyZ37pt2oASilGA=
   - secure: C+qQ9H2aTpZAjHBEW4LcRODxdozEwerA8CF1bQZ2sJCXY0wlP9tikaaNWrCBWGv9/v7X5qIwORXJwGyEAxg331FsJNvQ7i+rNSbna5NlHozWChUQvjPe+fWpCPdAEKeAF+JyDLKRbsWo2SqiaYDsnTXD5BaancOCGqkpEDZrm7HdUL091arG8CJVjUG2OaEo0aNsnuw7Z9NVTw5zD9lmGBlpKlTwXXfjzNg1Y5ThHkfxsCoYWa8rfL+wdec6ZghJFZ6ITZbYKBPbXYIUyJO1dboJi0+EhAnL9rD1NmcK2ERz8d99HqKhzEI/KoHCtOe+czOBhi5/OMe2lza1tL+z3uFF4TS86Qdk7JARegdHdxTPlztcagTd70wUwJ1POMBRnrVdFhnXvWDX87lk0RGvGUlCTsh+lMwZBM4UdMH96Eb+mwECe5qeWE8vGkPEtny6sTKhJvEhHmHmVNL/tYdqXsEdgfSOSHrhXfvesUMvr62/KlA9mFTtAzShom+4Jpx+1OlLdNDHyRmODoRhDJnuHRCOCjXzks8W12Hbg5ej7KnqLO0ymlGQumGoVjWzOHKwdNuItN1mEGRA/p0+nxS2tSAyg9rJF4spFRugGa1yapDzj7bqUfq8oCa4qzIbuiNU22Y8SQMdYJxvHBhq4wLcRX9g7u1uNEtKyykb5+nrKug=
   - secure: YQEb1NAiHbgkiaHGJ6FHxMb7CYy44uszfqyC2Yj98ueuZDFJFIJqchUe9k2H3CdayU0i7MhCEk0LL4hSZpXRhyyFs6AxWh82ISPrBaraCyd5x51EoKPeVmTW1MTLjl467HX357Do41JsooMkGX8llpaAzJP5mY7fJmx91Cnpg5dQbAeSWhwSM16yfYHHpQXvoGmTlcj89hoJ7LLTMEg6o+CgGlYnx5LB/vvWxHNiMNVB+IJEMo7MopQUVkVqTEJ+k8x0i2tBdwLNCoMl79xrsYETsSRzn85zuD/wqfY0yfvEwYsKD1YtkjJW14/y4mFFHCyW+/igORknuBRF1qRZEOHeTMiDmNOsA2yi1RXjNIeUpOctCNV29KDAyqkOfQwlKMzezBGoVKRsxd3oWZpjNjnqgQ7lEx5CwQKN5pSxMmd1pWZTkY+Ci9b+VrBvshhdPwBKsjZjS8jDHlX0uT6OHPN17PFziCtKRfh+gukSLJJcxRz9H/4F6NLpFJzx4/UsFLW45XY5BXwucYgUyk+oXeQDlzSXVpAuE2KDOaHWg12jlnWptTq7rHfKE0N61JOgolThCun5i+0L6eydaPNswqUtbB/WlDdkbpDMaUFR/HFDFNkTiJyPpTeYHdsqwq57hqI/D2Otkc28wbVHodYZyxiaLe9gozmD5IYS8Sf9tdM=
-
-
-
 addons:
- ssh_know_hosts: l3p
-
+  ssh_know_hosts: l3p
 git:
- submodules: false
-
-
+  submodules: false
 before_install:
-#configurações
-
-#- sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-#- git submodule update --init --recursive
 - openssl aes-256-cbc -K $encrypted_02c37e8cba41_key -iv $encrypted_02c37e8cba41_iv
   -in stuff.tar.enc -out stuff.tar -d
 - tar xvf stuff.tar
 - bash install.sh
-
-script:
-
+script: 
 after_success:
 - bash deploy.sh
