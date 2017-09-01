@@ -6,11 +6,13 @@ eval `ssh-agent -s` #start shh agent
 ssh-add ~/.ssh/deploy-key
 chmod 600 config.txt
 mv config.txt ~/.ssh/config
+pwd
+ls
 
 
-cat deploy-key >> ~/.ssh/authorized_keys
+#cat deploy-key >> ~/.ssh/authorized_keys
 
-ssh l3p@medialab.ufg.br ls
+#ssh l3p@medialab.ufg.br ls
 
 
 

@@ -29,21 +29,11 @@ git:
 before_install:
 - openssl aes-256-cbc -K $encrypted_02c37e8cba41_key -iv $encrypted_02c37e8cba41_iv
   -in deploy_rsa.enc -out deploy_rsa -d
-#- openssl aes-256-cbc -K $encrypted_02c37e8cba41_key -iv $encrypted_02c37e8cba41_iv
-#  -in stuff.tar.enc -out stuff.tar -d
-#- tar xvf stuff.tar
-#- bash install.sh
+- openssl aes-256-cbc -K $encrypted_02c37e8cba41_key -iv $encrypted_02c37e8cba41_iv
+  -in stuff.tar.enc -out stuff.tar -d
+- tar xvf stuff.tar
+- bash install.sh
 
-- eval "$(ssh-agent -s)"
-- chmod 600 /tmp/deploy_rsa
-- ssh-add /tmp/deploy_rsa
-
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/<dir> l3p@medialab.ufg.br:/home/l3p/tainacan_docs/test/tainacan/
-  on:
-    branch: continuosIntegration
 
 
 script: 
