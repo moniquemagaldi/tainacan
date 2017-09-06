@@ -2,7 +2,7 @@ language: php
 
 php:
   - 7.1
-  - hhvm-3.21
+  - hhvm
   - nightly
 
 matrix:
@@ -26,24 +26,19 @@ env:
   - secure: C+qQ9H2aTpZAjHBEW4LcRODxdozEwerA8CF1bQZ2sJCXY0wlP9tikaaNWrCBWGv9/v7X5qIwORXJwGyEAxg331FsJNvQ7i+rNSbna5NlHozWChUQvjPe+fWpCPdAEKeAF+JyDLKRbsWo2SqiaYDsnTXD5BaancOCGqkpEDZrm7HdUL091arG8CJVjUG2OaEo0aNsnuw7Z9NVTw5zD9lmGBlpKlTwXXfjzNg1Y5ThHkfxsCoYWa8rfL+wdec6ZghJFZ6ITZbYKBPbXYIUyJO1dboJi0+EhAnL9rD1NmcK2ERz8d99HqKhzEI/KoHCtOe+czOBhi5/OMe2lza1tL+z3uFF4TS86Qdk7JARegdHdxTPlztcagTd70wUwJ1POMBRnrVdFhnXvWDX87lk0RGvGUlCTsh+lMwZBM4UdMH96Eb+mwECe5qeWE8vGkPEtny6sTKhJvEhHmHmVNL/tYdqXsEdgfSOSHrhXfvesUMvr62/KlA9mFTtAzShom+4Jpx+1OlLdNDHyRmODoRhDJnuHRCOCjXzks8W12Hbg5ej7KnqLO0ymlGQumGoVjWzOHKwdNuItN1mEGRA/p0+nxS2tSAyg9rJF4spFRugGa1yapDzj7bqUfq8oCa4qzIbuiNU22Y8SQMdYJxvHBhq4wLcRX9g7u1uNEtKyykb5+nrKug=
   - secure: YQEb1NAiHbgkiaHGJ6FHxMb7CYy44uszfqyC2Yj98ueuZDFJFIJqchUe9k2H3CdayU0i7MhCEk0LL4hSZpXRhyyFs6AxWh82ISPrBaraCyd5x51EoKPeVmTW1MTLjl467HX357Do41JsooMkGX8llpaAzJP5mY7fJmx91Cnpg5dQbAeSWhwSM16yfYHHpQXvoGmTlcj89hoJ7LLTMEg6o+CgGlYnx5LB/vvWxHNiMNVB+IJEMo7MopQUVkVqTEJ+k8x0i2tBdwLNCoMl79xrsYETsSRzn85zuD/wqfY0yfvEwYsKD1YtkjJW14/y4mFFHCyW+/igORknuBRF1qRZEOHeTMiDmNOsA2yi1RXjNIeUpOctCNV29KDAyqkOfQwlKMzezBGoVKRsxd3oWZpjNjnqgQ7lEx5CwQKN5pSxMmd1pWZTkY+Ci9b+VrBvshhdPwBKsjZjS8jDHlX0uT6OHPN17PFziCtKRfh+gukSLJJcxRz9H/4F6NLpFJzx4/UsFLW45XY5BXwucYgUyk+oXeQDlzSXVpAuE2KDOaHWg12jlnWptTq7rHfKE0N61JOgolThCun5i+0L6eydaPNswqUtbB/WlDdkbpDMaUFR/HFDFNkTiJyPpTeYHdsqwq57hqI/D2Otkc28wbVHodYZyxiaLe9gozmD5IYS8Sf9tdM=
 
-
-before_install:
-- openssl aes-256-cbc -K $encrypted_02c37e8cba41_key -iv $encrypted_02c37e8cba41_iv
-  -in deploy_rsa.enc -out deploy_rsa -d
-- eval "$(ssh-agent -s)"
-- chmod 600 deploy_rsa
-- ssh-add  deploy_rsa
-- echo -e "Host medialab.ufg.br\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-#- openssl aes-256-cbc -K $encrypted_02c37e8cba41_key -iv $encrypted_02c37e8cba41_iv
-#  -in stuff.tar.enc -out stuff.tar -d
-#- tar xvf stuff.tar
-- bash install.sh
-
 before_script:
   - composer install
   
 script: 
   - phpunit
+
+after_success:
+  - openssl aes-256-cbc -K $encrypted_02c37e8cba41_key -iv $encrypted_02c37e8cba41_iv
+  -in deploy_rsa.enc -out deploy_rsa -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 deploy_rsa
+  - ssh-add  deploy_rsa
+  - echo -e "Host medialab.ufg.br\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
 notifications:
   on_success: never
