@@ -7,6 +7,13 @@ php:
   - hhvm
   - nightly
 
+install:
+  - composer self-update
+  - composer install
+
+script: 
+  - ./vendor/bin/phpunit
+
 matrix:
   allow_failures:
     - php: 7.1
@@ -14,26 +21,22 @@ matrix:
     - php: nightly
   fast_finish: true
 
-addons:
-  - ssh_know_hosts: medialab.ufg.br
-
-before_script:
-  - composer install
-  
-script: 
-  - phpunit
-
 after_success:
   - openssl aes-256-cbc -K $encrypted_02c37e8cba41_key -iv $encrypted_02c37e8cba41_iv -in deploy_rsa.enc -out deploy_rsa -d
   - eval "$(ssh-agent -s)"
   - chmod 600 deploy_rsa
   - ssh-add  deploy_rsa
   - echo -e "Host medialab.ufg.br\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  
+cache:
+  directories:
+  - vendor
+  - $HOME/.cache/composer
 
 notifications:
-  on_success: never
-  on_failure: always
-
+  email:
+    on_success: never
+    on_failure: always
 env:
   global:
     - secure: LnUpxgHL/Qgpbg20mRErlnwb8tvNs6f7uPRe9c82UuMP69uDZeD3K5GNzL6u0Y+C/zNHk7tCnUszDC7FtQAij6qi72HHW2zz4zVJ+DFI3b+hx7+rSKsjtbnJChTbknSu3rW+yHYRTIUZJQ/Tg6thDLKzU0a4VRb+ickDpRYLyP+Cf4+xs7rwAhjiboMNIGXahrCpnbhctmOhRgZaHvfnPB9prRs5lOCCBQqSwMmjEo7OJeCCUjfpU5xq3EjUEzwjzzBlSf3240PS/LOBFr2iGF30VT9LDTb1iUZU1gTcaxaK+/EjKLG/wtcH8TOaLJpsksbnMkSTrG3ICblXl1G4Itu8IHzLgOmWoiWIVXZ4y17aYyj/y7YZtX+fjB6qs9RG5ZnSpHkSDEni8CCC8Ltf9jVSkLEust/bNLgkd02hJ4xtVxOaoBYEh3hcylJ/co8BTDdbNyT3BwrFc4f2jfRh5DYzyrKaTG5IJAT2BfyjD/BsxBE3EgIuJFja1zVJKMcuCmogDiHi6sb0zhF+LbLy0nXqvysTrMEYbDppVYQloz3BKb2v2m/jc89G7v8AjnvwTUgj64PUj+p10ngfIA+FHPILLtd/fNm0zRIRDqSfE7rpGZo9EoZ9jq0wVSmy0DK8kFTX+9RFW8xYmFnTgB3beKWqdK9CAqXEeeD3ABejXTc=
