@@ -7,19 +7,19 @@ php:
   - hhvm
   - nightly
 
-install:
-  - composer self-update
-  - composer install
-
-script: 
-  - ./vendor/bin/phpunit
-
 matrix:
   allow_failures:
     - php: 7.1
     - php: hhvm
     - php: nightly
   fast_finish: true
+
+install:
+  - composer self-update
+  - composer install
+
+script:
+  - ./vendor/bin/phpunit test
 
 after_success:
   - openssl aes-256-cbc -K $encrypted_02c37e8cba41_key -iv $encrypted_02c37e8cba41_iv -in deploy_rsa.enc -out deploy_rsa -d
