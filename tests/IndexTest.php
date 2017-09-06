@@ -1,6 +1,8 @@
 <?php
 
-class IntexTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class IntexTest extends TestCase
 
 {
     public function testPushAndPop()
