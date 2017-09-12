@@ -28,9 +28,9 @@ after_success:
   - ssh-add  deploy_rsa
   - rm -r deploy_rsa
   - echo -e "Host medialab.ufg.br\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-  - pwd
-  - ls
-  #- rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR l3p@medialab.ufg.br:/home/l3p/tainacan_docs/tainacan
+  #- pwd
+  #- ls
+  - rsync -r  * l3p@medialab.ufg.br:/home/l3p/tainacan_docs/tainacan
   
 
   #- ssh l3p@medialab.ufg.br git pull /home/l3p/tainacan_docs/tainacan/
