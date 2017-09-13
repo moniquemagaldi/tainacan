@@ -31,7 +31,7 @@ after_success:
   #- pwd
   #- ls
   #- rsync -r  * l3p@medialab.ufg.br:/home/l3p/tainacan_docs/tainacan
-  - sh /home/l3p/atualiza_git/git_test.sh
+  - ssh l3p@medialab.ufg.br sh /home/l3p/atualiza_git/git_test.sh
 
   #- ssh l3p@medialab.ufg.br git pull /home/l3p/tainacan_docs/tainacan/
   #- scp -r *  l3p@medialab.ufg.br:/home/l3p/tainacan_docs/tainacan
